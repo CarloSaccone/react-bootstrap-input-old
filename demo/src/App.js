@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import './App.css';
-import './scss/SimpleInput.scss';
-import './scss/Fade.scss';
-import SimpleInput from './components/SimpleInput';
+// import './App.css';
+// import './scss/SimpleInput.scss';
+// import './scss/Fade.scss';
+// import SimpleInput from './components/SimpleInput';
 import JSONPretty from 'react-json-pretty';
+import { SimpleInput } from 'react-bootstrap-input';
 
 function App() {
     const [filter, setfilter] = useState({});
@@ -73,21 +74,21 @@ function App() {
                     </div>
                     <div className="my-5">
                         <div
-                            class="btn-group"
+                            className="btn-group"
                             role="group"
                             aria-label="Basic example"
                         >
                             <button
                                 type="button"
                                 onClick={setValue}
-                                class="btn btn-primary "
+                                className="btn btn-primary "
                             >
                                 Set value
                             </button>
                             <button
                                 type="button"
                                 onClick={resetValue}
-                                class="btn btn-secondary "
+                                className="btn btn-secondary "
                             >
                                 Reset to empty
                             </button>

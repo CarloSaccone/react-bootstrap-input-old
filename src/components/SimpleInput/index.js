@@ -1,10 +1,8 @@
 /** @format */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import validator from 'validator';
 import classNames from 'classnames';
 import { InputTag, TextField } from './partials';
-import './SimpleInput.scss';
-import './Fade.scss';
 
 const SimpleInput = ({
     formObj,
@@ -26,17 +24,17 @@ const SimpleInput = ({
     const [isvalid, setisvalid] = useState();
     const [localValue, setlocalValue] = useState('');
 
+    const setValidity = useCallback(value => {
+        const valid = checkIsValid(value);
+        setisvalid(valid);
+        if (setformValidationObj) setformValidationObj({ name, valid });
+    });
+
     useEffect(() => {
         const localval = formObj[name] === 0 ? '0' : formObj[name];
         setlocalValue(localval || '');
         setValidity(formObj[name]);
-    }, [formObj]);
-
-    const setValidity = value => {
-        const valid = checkIsValid(value);
-        setisvalid(valid);
-        if (setformValidationObj) setformValidationObj({ name, valid });
-    };
+    }, [formObj, name, setValidity]);
 
     const handleChange = event => {
         let { value } = event.target;
